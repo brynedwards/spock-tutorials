@@ -97,7 +97,7 @@ app = do
         runSQL $ replace personId thePerson
         setStatus created201
         json $ object ["result" .= String "success", "id" .= personId]
-  delete ("person" <//> var) $ \personId -> do
+  delete ("people" <//> var) $ \personId -> do
     runSQL $ P.delete (personId :: PersonId)
     setStatus noContent204
 

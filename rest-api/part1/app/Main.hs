@@ -29,8 +29,8 @@ main = do
 
 app :: Api
 app = do
-  get "person" $ do
+  get "people" $ do
     json [Person {name = "Fry", age = 25}, Person {name = "Bender", age = 4}]
-  post "person" $ do
+  post "people" $ do
     thePerson <- jsonBody' :: ApiAction Person
     text $ "Parsed: " <> pack (show thePerson)
