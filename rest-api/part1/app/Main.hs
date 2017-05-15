@@ -18,17 +18,19 @@ instance ToJSON Person
 
 instance FromJSON Person
 
+type Api = SpockM () () () ()
+
+type ApiAction a = SpockAction () () () a
+
 main :: IO ()
 main = do
   spockCfg <- defaultSpockCfg () PCNoDatabase ()
   runSpock 8080 (spock spockCfg app)
 
-app :: SpockM () () () ()
+app :: Api
 app = do
   get "person" $ do
-    json [Person { name = "Fry", age = 25 }, Person { name = "Bender", age = 4 }]
+    json [Person {name = "Fry", age = 25}, Person {name = "Bender", age = 4}]
   post "person" $ do
-    maybePerson <- jsonBody
-    case (maybePerson :: Maybe Person) of
-      Nothing -> text "Failed to parse request body as Person"
-      Just thePerson  -> text $ "Parsed: " <> pack (show thePerson)
+    thePerson <- jsonBody' :: ApiAction Person
+    text $ "Parsed: " <> pack (show thePerson)

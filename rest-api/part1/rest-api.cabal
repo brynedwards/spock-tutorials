@@ -1,8 +1,8 @@
-name:                Spock-rest
+name:                rest-api
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/Spock-rest#readme
+homepage:            https://github.com/githubuser/rest-api#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Author name here
@@ -19,30 +19,25 @@ library
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-executable Spock-rest-exe
+executable rest-api-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , aeson
-                     , http-types
-                     , monad-logger
-                     , persistent
-                     , persistent-sqlite
-                     , persistent-template
                      , Spock
                      , text
   default-language:    Haskell2010
 
-test-suite Spock-rest-test
+test-suite rest-api-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-depends:       base
-                     , Spock-rest
+                     , rest-api
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/Spock-rest
+  location: https://github.com/githubuser/rest-api
